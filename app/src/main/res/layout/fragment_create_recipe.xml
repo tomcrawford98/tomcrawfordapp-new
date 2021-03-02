@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#015981"
         android:paddingBottom="75dp">
 
         <TextView
@@ -28,6 +29,7 @@
             android:layout_width="324dp"
             android:layout_height="59dp"
             android:layout_marginTop="12dp"
+            android:gravity="center"
             android:text="Recipe Name"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,9 +63,9 @@
             android:id="@+id/RecipeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="Recipe Date"
             android:textSize="25dp"
-            android:theme="@style/label_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -75,6 +77,7 @@
             android:id="@+id/edit_RecipeStartDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="DD/MM/YYYY"
             android:inputType="date"
@@ -86,8 +89,8 @@
 
         <Button
             android:id="@+id/RecipeStartDate"
-            android:layout_width="84dp"
-            android:layout_height="42dp"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="12dp"
             android:background="@color/colorPrimaryLight"
             android:text="SELECT DATE"
@@ -97,6 +100,32 @@
             app:layout_constraintEnd_toEndOf="@+id/edit_RecipeStartDate"
             app:layout_constraintTop_toTopOf="@+id/edit_RecipeStartDate"
             app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/RecipeNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Recipe Notes"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_createBreakfast"
+            app:layout_constraintVertical_bias="0.494" />
+
+        <EditText
+            android:id="@+id/edit_RecipeNotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Recipe Notes"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_RecipeStartDate" />
 
         <Button
             android:id="@+id/btn_save"

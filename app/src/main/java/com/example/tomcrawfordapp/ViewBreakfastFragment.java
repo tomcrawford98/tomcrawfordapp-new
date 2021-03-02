@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,18 +15,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.tomcrawfordapp.model.FoodListAdapter;
-import com.example.tomcrawfordapp.ui.home.HomeFragment;
-import com.example.tomcrawfordapp.ui.home.HomeFragmentDirections;
+import com.example.tomcrawfordapp.model.Recipe;
+import com.example.tomcrawfordapp.model.RecipeListAdapter;
+import com.example.tomcrawfordapp.model.RecipeViewModel;
+
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ViewBreakfastFragment extends Fragment {
-
+    private RecipeViewModel mRecipeViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,19 @@ public class ViewBreakfastFragment extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(ViewBreakfastFragment.this)
                         .navigate(R.id.createRecipeFragment, null);
+            }
+        });
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_food);
+        RecipeListAdapter adapter = new RecipeListAdapter(getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
+//        if statement - if meal type breakfast, getAllBreakfast.observe - else if lunch etc...
+        mRecipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(@Nullable final List<Recipe> recipes) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setRecipes(recipes);
             }
         });
 

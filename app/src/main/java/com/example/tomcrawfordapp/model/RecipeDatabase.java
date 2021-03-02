@@ -9,21 +9,21 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Food.class}, version = 1, exportSchema = false)
+@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 
-public abstract class FoodRoomDatabase extends RoomDatabase {
-    private static FoodRoomDatabase INSTANCE;
-    public abstract FoodDAO foodDao();
+public abstract class RecipeDatabase extends RoomDatabase {
+    private static RecipeDatabase INSTANCE;
+    public abstract RecipeDAO recipeDAO();
 
 
 
-    public static FoodRoomDatabase getDatabase(final Context context) {
+    public static RecipeDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (FoodRoomDatabase.class) {
+            synchronized (RecipeDatabase.class) {
                 if (INSTANCE == null) {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            FoodRoomDatabase.class, "food_database")
+                            RecipeDatabase.class, "recipe_database")
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
@@ -45,11 +45,20 @@ public abstract class FoodRoomDatabase extends RoomDatabase {
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
-        private final FoodDAO mDao;
-        String[] foods = {"Full English", "Lasagna", "Fillet Steak"};
-
-        PopulateDbAsync(FoodRoomDatabase db) {
-            mDao = db.foodDao();
+        private final RecipeDAO mDao;
+        Recipe[] foods = new Recipe[3];
+// set meal types for each. meal type must be non null.
+        PopulateDbAsync(RecipeDatabase db) {
+            Recipe r1 = new Recipe();
+            r1.setTitle("Fillet Steak");
+            foods[0] = r1;
+            Recipe r2 = new Recipe();
+            r2.setTitle("Lasagna");
+            foods[1] = r2;
+            Recipe r3 = new Recipe();
+            r3.setTitle("Mushroom Risotto");
+            foods[2] = r3;
+            mDao = db.recipeDAO();
         }
 
         @Override
@@ -61,8 +70,8 @@ public abstract class FoodRoomDatabase extends RoomDatabase {
 
             for (int i = 0; i <= foods.length - 1; i++) {
 
-                Food food = new Food(foods[i]);
-                mDao.insert(food);
+                Recipe r = (foods[i]);
+                mDao.insert(r);
             }
             return null;
         }
