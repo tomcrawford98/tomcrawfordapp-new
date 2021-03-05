@@ -13,7 +13,16 @@ public interface RecipeDAO {
 
     @Query("DELETE FROM recipe")
     void deleteAll();
-//3 different selects. getAllBreakfast etc ->order by meal type.
+//5 different selects. getAllBreakfast etc ->order by meal type.
+    //how to find things via parameter
+    @Query("SELECT * from recipe WHERE type = 'breakfast' ORDER BY title ASC")
+    LiveData<List<Recipe>> getAllBreakfast();
+    @Query("SELECT * from recipe WHERE type = 'lunch' ORDER BY title ASC")
+    LiveData<List<Recipe>> getAllLunch();
+    @Query("SELECT * from recipe WHERE type = 'dinner' ORDER BY title ASC")
+    LiveData<List<Recipe>> getAllDinner();
     @Query("SELECT * from recipe ORDER BY title ASC")
-    LiveData<List<Recipe>> getAllRecipe();
+    LiveData<List<Recipe>> getAllSnacks();
+    @Query("SELECT * from recipe ORDER BY title ASC")
+    LiveData<List<Recipe>> getAllDessert();
 }

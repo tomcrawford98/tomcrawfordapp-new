@@ -51,13 +51,19 @@ public abstract class RecipeDatabase extends RoomDatabase {
         PopulateDbAsync(RecipeDatabase db) {
             Recipe r1 = new Recipe();
             r1.setTitle("Fillet Steak");
+            r1.setType("dinner");
             foods[0] = r1;
+
             Recipe r2 = new Recipe();
             r2.setTitle("Lasagna");
+            r2.setType("lunch");
             foods[1] = r2;
+
             Recipe r3 = new Recipe();
-            r3.setTitle("Mushroom Risotto");
+            r3.setTitle("Omelette");
+            r3.setType("breakfast");
             foods[2] = r3;
+
             mDao = db.recipeDAO();
         }
 

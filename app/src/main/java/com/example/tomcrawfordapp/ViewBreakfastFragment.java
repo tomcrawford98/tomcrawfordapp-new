@@ -66,13 +66,47 @@ public class ViewBreakfastFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 //        if statement - if meal type breakfast, getAllBreakfast.observe - else if lunch etc...
-        mRecipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(@Nullable final List<Recipe> recipes) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setRecipes(recipes);
-            }
-        });
+        if(mealName == "breakfast") {
+            mRecipeViewModel.getAllBreakfast().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+                @Override
+                public void onChanged(@Nullable final List<Recipe> recipes) {
+                    // Update the cached copy of the words in the adapter.
+                    adapter.setRecipes(recipes);
+                }
+            });
+        } else if(mealName == "lunch"){
+            mRecipeViewModel.getAllLunch().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+                @Override
+                public void onChanged(@Nullable final List<Recipe> recipes) {
+                    // Update the cached copy of the words in the adapter.
+                    adapter.setRecipes(recipes);
+                }
+            });
+        } else if (mealName == "dinner"){
+            mRecipeViewModel.getAllDinner().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+                @Override
+                public void onChanged(@Nullable final List<Recipe> recipes) {
+                    // Update the cached copy of the words in the adapter.
+                    adapter.setRecipes(recipes);
+                }
+            });
+        } else if(mealName == "snacks"){
+            mRecipeViewModel.getAllSnacks().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+                @Override
+                public void onChanged(@Nullable final List<Recipe> recipes) {
+                    // Update the cached copy of the words in the adapter.
+                    adapter.setRecipes(recipes);
+                }
+            });
+        } else if(mealName == "dessert"){
+            mRecipeViewModel.getAllDessert().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+                @Override
+                public void onChanged(@Nullable final List<Recipe> recipes) {
+                    // Update the cached copy of the words in the adapter.
+                    adapter.setRecipes(recipes);
+                }
+            });
+        }
 
     }
 }
