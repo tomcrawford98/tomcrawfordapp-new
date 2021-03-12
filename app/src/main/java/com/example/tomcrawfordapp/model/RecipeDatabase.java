@@ -46,23 +46,51 @@ public abstract class RecipeDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final RecipeDAO mDao;
-        Recipe[] foods = new Recipe[3];
+        Recipe[] foods = new Recipe[6];
 // set meal types for each. meal type must be non null.
         PopulateDbAsync(RecipeDatabase db) {
             Recipe r1 = new Recipe();
-            r1.setTitle("Fillet Steak");
+            r1.setName("Steak");
             r1.setType("dinner");
+            r1.setNotes("Cook on medium temp for 5 mins");
+            r1.setIngredients("8oz Rump Steak,Onions, Garlic");
+
             foods[0] = r1;
 
             Recipe r2 = new Recipe();
-            r2.setTitle("Lasagna");
+            r2.setName("Lasagna");
             r2.setType("lunch");
+            r1.setNotes("Cook on medium temp for 5 mins");
+            r1.setIngredients("8oz Rump Steak,Onions, Garlic");
             foods[1] = r2;
 
             Recipe r3 = new Recipe();
-            r3.setTitle("Omelette");
+            r3.setName("Omelette");
             r3.setType("breakfast");
+            r1.setNotes("Cook on medium temp for 5 mins");
+            r1.setIngredients("8oz Rump Steak,Onions, Garlic");
             foods[2] = r3;
+
+            Recipe r6 = new Recipe();
+            r6.setName("Cornflakes");
+            r6.setType("breakfast");
+            r6.setNotes("Cook on medium temp for 5 mins");
+            r6.setIngredients("8oz Rump Steak,Onions, Garlic");
+            foods[5] = r6;
+
+            Recipe r4 = new Recipe();
+            r4.setName("Potato Skins");
+            r4.setType("snacks");
+            r1.setNotes("Cook on medium temp for 5 mins");
+            r1.setIngredients("8oz Rump Steak,Onions, Garlic");
+            foods[3] = r4;
+
+            Recipe r5 = new Recipe();
+            r5.setName("Fudge Cake");
+            r5.setType("dessert");
+            r1.setNotes("Cook on medium temp for 5 mins");
+            r1.setIngredients("8oz Rump Steak,Onions, Garlic");
+            foods[4] = r5;
 
             mDao = db.recipeDAO();
         }
@@ -72,12 +100,12 @@ public abstract class RecipeDatabase extends RoomDatabase {
             // Start the app with a clean database every time.
             // Not needed if you only populate the database
             // when it is first created
-            mDao.deleteAll();
+           mDao.deleteData();
 
             for (int i = 0; i <= foods.length - 1; i++) {
 
                 Recipe r = (foods[i]);
-                mDao.insert(r);
+                mDao.insertAllData(r);
             }
             return null;
         }

@@ -8,21 +8,36 @@ import java.util.List;
 
 @Dao
 public interface RecipeDAO {
-    @Insert
-    void insert(Recipe recipe);
 
-    @Query("DELETE FROM recipe")
-    void deleteAll();
-//5 different selects. getAllBreakfast etc ->order by meal type.
-    //how to find things via parameter
-    @Query("SELECT * from recipe WHERE type = 'breakfast' ORDER BY title ASC")
+//step 1 - replace getAll with getAllMeals(String mealName);
+    //select all from recipe where type = :mealname
+    @Insert
+    void insertAllData(Recipe recipe);
+
+    //Select All Data
+    @Query("select * from  recipe where type = 'breakfast' ")
     LiveData<List<Recipe>> getAllBreakfast();
-    @Query("SELECT * from recipe WHERE type = 'lunch' ORDER BY title ASC")
+    //Select All Data
+    @Query("select * from  recipe")
     LiveData<List<Recipe>> getAllLunch();
-    @Query("SELECT * from recipe WHERE type = 'dinner' ORDER BY title ASC")
+    //Select All Data
+    @Query("select * from  recipe")
     LiveData<List<Recipe>> getAllDinner();
-    @Query("SELECT * from recipe ORDER BY title ASC")
+    //Select All Data
+    @Query("select * from  recipe")
     LiveData<List<Recipe>> getAllSnacks();
-    @Query("SELECT * from recipe ORDER BY title ASC")
+    //Select All Data
+    @Query("select * from  recipe")
     LiveData<List<Recipe>> getAllDessert();
+
+    @Query("select * from  recipe where type = :mealName ")
+    LiveData<List<Recipe>> getAllMeals(String mealName);
+    //DELETE DATA
+    @Query("delete from recipe")
+    void deleteData();
+
+    //Update Data
+
+    @Query("update recipe SET type= :type, name= :name ,ingredients =:ingredients, notes =:notes where `key`= :key")
+    void updateData(String type, String name, String ingredients, String notes, int key);
 }

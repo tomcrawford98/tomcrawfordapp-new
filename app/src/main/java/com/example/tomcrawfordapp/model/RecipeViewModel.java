@@ -17,6 +17,8 @@ public class RecipeViewModel extends AndroidViewModel {
     private LiveData<List<Recipe>> mAllSnacks;
     private LiveData<List<Recipe>> mAllDessert;
 
+    private LiveData<List<Recipe>> mMeals;
+
     public RecipeViewModel(Application application) {
         super(application);
         mRepository = new RecipeRepository(application);
@@ -26,6 +28,8 @@ public class RecipeViewModel extends AndroidViewModel {
         mAllDinner = mRepository.getAllDinner();
         mAllSnacks = mRepository.getAllSnacks();
         mAllDessert = mRepository.getAllDessert();
+
+        mMeals = mRepository.getAllMeals("lunch");
     }
 // 5 types
     public LiveData<List<Recipe>> getAllBreakfast() { return mAllBreakfast; }
@@ -33,6 +37,11 @@ public class RecipeViewModel extends AndroidViewModel {
     public LiveData<List<Recipe>> getAllDinner() { return mAllDinner; }
     public LiveData<List<Recipe>> getAllSnacks() { return mAllSnacks; }
     public LiveData<List<Recipe>> getAllDessert() { return mAllDessert; }
+
+    public LiveData<List<Recipe>> getAllMeals(String mealName) {
+        mMeals = mRepository.getAllMeals(mealName);
+        return mMeals;
+    }
 
     public void insert(Recipe recipe) { mRepository.insert(recipe); }
 }

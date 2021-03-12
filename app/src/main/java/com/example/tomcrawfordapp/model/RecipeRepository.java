@@ -17,6 +17,9 @@ public class RecipeRepository {
     private LiveData<List<Recipe>> mAllSnacks;
     private LiveData<List<Recipe>> mAllDessert;
 
+    private LiveData<List<Recipe>> mMeals;
+
+
     RecipeRepository(Application application) {
         RecipeDatabase db = RecipeDatabase.getDatabase(application);
         mRecipeDao = db.recipeDAO();
@@ -26,8 +29,10 @@ public class RecipeRepository {
         mAllDinner = mRecipeDao.getAllDinner();
         mAllSnacks = mRecipeDao.getAllSnacks();
         mAllDessert = mRecipeDao.getAllDessert();
+
+        mMeals = mRecipeDao.getAllMeals("lunch");
     }
-// 3 of these - b/l/d
+
     public LiveData<List<Recipe>> getAllBreakfast() {
         return mAllBreakfast;
     }
@@ -44,6 +49,12 @@ public class RecipeRepository {
         return mAllDessert;
     }
 
+    public LiveData<List<Recipe>> getAllMeals(String mealName) {
+        mMeals = mRecipeDao.getAllMeals(mealName);
+        return mMeals;
+    }
+
+
     public void insert (Recipe recipe) {
         new insertAsyncTask(mRecipeDao).execute(recipe);
     }
@@ -58,7 +69,7 @@ public class RecipeRepository {
 
         @Override
         protected Void doInBackground(final Recipe... params) {
-            mAsyncTaskDao.insert(params[0]);
+            mAsyncTaskDao.insertAllData(params[0]);
             return null;
         }
     }

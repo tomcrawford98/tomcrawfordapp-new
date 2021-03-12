@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tomcrawfordapp.R;
@@ -21,6 +23,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             super(itemView);
             foodItemView = itemView.findViewById(R.id.recipeTitle);
         }
+
     }
 
     private final LayoutInflater mInflater;
@@ -37,7 +40,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
         Recipe current = mRecipe.get(position);
-        holder.foodItemView.setText(current.getTitle());
+        holder.foodItemView.setText(current.getName());
+
     }
 
     public void setRecipes(List<Recipe> recipes){
@@ -46,12 +50,26 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
     // getItemCount() is called many times, and when it is first called,
-    // mFood has not been updated (means initially, it's null, and we can't return null).
+    // mRecipe has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
         if (mRecipe != null)
             return mRecipe.size();
         else return 0;
     }
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView type, name, ingredients, notes;
+        Button update, delete;
 
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            type = itemView.findViewById(R.id.type);
+            ingredients = itemView.findViewById(R.id.ingredients);
+            name = itemView.findViewById(R.id.name);
+            notes = itemView.findViewById(R.id.notes);
+            update = itemView.findViewById(R.id.updateId);
+            delete = itemView.findViewById(R.id.deleteId);
+        }
+    }
 }

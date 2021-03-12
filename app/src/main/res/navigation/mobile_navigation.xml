@@ -11,8 +11,8 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_nav_home_to_viewBreakfastFragment"
-            app:destination="@id/viewBreakfastFragment" />
+            android:id="@+id/action_nav_home_to_viewRecipeFragment"
+            app:destination="@id/ViewRecipeFragment" />
     </fragment>
 
     <fragment
@@ -37,30 +37,25 @@
         android:label="Settings"
         tools:layout="layout/fragment_settings"/>
     <fragment
-        android:id="@+id/nav_profile"
-        android:name="com.example.tomcrawfordapp.ProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
         android:id="@+id/nav_foodMap"
         android:name="com.example.tomcrawfordapp.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
-        android:id="@+id/viewBreakfastFragment"
-        android:name="com.example.tomcrawfordapp.ViewBreakfastFragment"
-        android:label="fragment_view_breakfast"
-        tools:layout="@layout/fragment_view_breakfast" >
+        android:id="@+id/ViewRecipeFragment"
+        android:name="com.example.tomcrawfordapp.ViewRecipeFragment"
+        android:label="fragment_view_recipe"
+        tools:layout="@layout/fragment_view_recipe">
         <argument
             android:name="mealName"
             app:argType="string" />
         <action
-            android:id="@+id/action_viewBreakfastFragment_to_createRecipeFragment"
-            app:destination="@id/createRecipeFragment" />
+            android:id="@+id/action_ViewRecipeFragment_to_CreateRecipeFragment"
+            app:destination="@id/CreateRecipeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createRecipeFragment"
-        android:name="com.example.tomcrawfordapp.createRecipeFragment"
+        android:id="@+id/CreateRecipeFragment"
+        android:name="com.example.tomcrawfordapp.CreateRecipeFragment"
         android:label="fragment_create_recipe"
         tools:layout="@layout/fragment_create_recipe" />
 

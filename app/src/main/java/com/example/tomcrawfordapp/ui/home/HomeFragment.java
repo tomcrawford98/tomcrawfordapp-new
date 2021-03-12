@@ -43,8 +43,8 @@ public class HomeFragment extends Fragment {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToViewBreakfastFragment action =
-                        HomeFragmentDirections.actionNavHomeToViewBreakfastFragment("breakfast");
+                HomeFragmentDirections.ActionNavHomeToViewRecipeFragment action =
+                        HomeFragmentDirections.actionNavHomeToViewRecipeFragment("breakfast");
 
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(action);
@@ -54,8 +54,8 @@ public class HomeFragment extends Fragment {
         layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToViewBreakfastFragment action =
-                        HomeFragmentDirections.actionNavHomeToViewBreakfastFragment("lunch");
+                HomeFragmentDirections.ActionNavHomeToViewRecipeFragment action =
+                        HomeFragmentDirections.actionNavHomeToViewRecipeFragment("lunch");
 
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(action);
@@ -66,8 +66,8 @@ public class HomeFragment extends Fragment {
         layout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToViewBreakfastFragment action =
-                        HomeFragmentDirections.actionNavHomeToViewBreakfastFragment("dinner");
+                HomeFragmentDirections.ActionNavHomeToViewRecipeFragment action =
+                        HomeFragmentDirections.actionNavHomeToViewRecipeFragment("dinner");
 
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(action);
@@ -78,8 +78,8 @@ public class HomeFragment extends Fragment {
         layout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToViewBreakfastFragment action =
-                        HomeFragmentDirections.actionNavHomeToViewBreakfastFragment("snacks");
+                HomeFragmentDirections.ActionNavHomeToViewRecipeFragment action =
+                        HomeFragmentDirections.actionNavHomeToViewRecipeFragment("snacks");
 
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(action);
@@ -90,8 +90,8 @@ public class HomeFragment extends Fragment {
         layout4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragmentDirections.ActionNavHomeToViewBreakfastFragment action =
-                        HomeFragmentDirections.actionNavHomeToViewBreakfastFragment("dessert");
+                HomeFragmentDirections.ActionNavHomeToViewRecipeFragment action =
+                        HomeFragmentDirections.actionNavHomeToViewRecipeFragment("dessert");
 
                 NavHostFragment.findNavController(HomeFragment.this)
                         .navigate(action);
